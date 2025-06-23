@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -27,7 +28,13 @@ public class CameraFollow : MonoBehaviour
         baseOffset = offset;
     }
 
-    void FixedUpdate()
+    // void FixedUpdate()
+    // {
+    //     HandleScaling();
+    //     FollowTarget();
+    // }
+
+    private void LateUpdate()
     {
         HandleScaling();
         FollowTarget();
