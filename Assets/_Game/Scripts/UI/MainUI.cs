@@ -10,10 +10,14 @@ public class MainUI : Singleton<MainUI>
     public List<int> targets = new List<int>();
     public List<TMP_Text> textDisplay = new List<TMP_Text>();
     public List<LevelObjectiveUI> levelObjectiveUIs = new List<LevelObjectiveUI>();
+    public List<RectTransform> ObjectiveUIs = new List<RectTransform>();
     public TMP_Text txtTimer;
     public Image imgFillTimer;
     public Button playBtn;
     public Button bigButton;
+
+   
+    
     #region TMT code
     [Header("popup win")]
     [SerializeField] CanvasScaler canvasScaler;
@@ -34,7 +38,7 @@ public class MainUI : Singleton<MainUI>
     #endregion TMT code
     private void Awake()
     {
-        playBtn.onClick.AddListener(OnPlayButtonClick);
+        //playBtn.onClick.AddListener(OnPlayButtonClick);
         bigButton.onClick.AddListener(OnPlayButtonClick);
     }
     void Update()
@@ -49,6 +53,10 @@ public class MainUI : Singleton<MainUI>
     }
     public void OnCollectTarget(int index)
     {
+        
+       
+        
+        
         targets[index]--;
         if (targets[index] == 0)
         {
