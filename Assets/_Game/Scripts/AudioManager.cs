@@ -6,15 +6,6 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Audio;
 
-public enum SFXType
-{
-    LevelUp,
-    Collect,
-    Finish,
-    Fails,
-    Win,
-    bgm,
-}
 
 [Serializable]
 public class AudioMap

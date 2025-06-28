@@ -73,6 +73,49 @@ public class Hole : MonoBehaviour
         );
         complimentText.colorGradient = gradientColor;
     }
+    
+    
+    
+    public void LevelUpHoleByBoster(int level)
+    {
+    Debug .LogError("tang size");
+
+    
+    int levelTemp = currentLevel + level;
+            
+    HoleLevelStat holeLevelState = holeStatByLevel[levelTemp - 1];
+            
+    transform.DOScale(Vector3.one * (holeLevelState.HoleScale), 0.4f).SetEase(Ease.OutBack);
+    holeMoving.ChangeSpeedReferToScale(holeLevelState.CameraScale);
+            
+    selfCamera.ScaleUpSmooth(holeLevelState.CameraScale);
+        DOVirtual.DelayedCall(5f, () =>
+        { 
+            HoleLevelStat holeLevelState = holeStatByLevel[currentLevel - 1];
+            
+            transform.DOScale(Vector3.one * (holeLevelState.HoleScale), 0.4f).SetEase(Ease.OutBack);
+            holeMoving.ChangeSpeedReferToScale(holeLevelState.CameraScale);
+            
+            selfCamera.ScaleUpSmooth(holeLevelState.CameraScale);
+        }).SetAutoKill(true);
+
+
+
+
+
+
+
+
+        // var gradientColor = new VertexGradient(
+        //     colorTop,  // top left
+        //     colorTop,  // top right
+        //     colorBot,  // bottom left
+        //     colorBot   // bottom right
+        // );
+        // complimentText.colorGradient = gradientColor;
+    }
+    
+    
     #region TMT code
     [SerializeField] TMP_Text complimentText;
   //  [LunaPlaygroundField("Color Top Compliment Text:", 1, "Game Settings")]

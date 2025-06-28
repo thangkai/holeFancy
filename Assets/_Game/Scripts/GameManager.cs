@@ -8,11 +8,13 @@ using DG.Tweening;
 public class GameManager : Singleton<GameManager>
 {
     #region TMT code
-    [Header("LunaPlaygroundField")]
-   // [LunaPlaygroundField("Time Play:", 30, "Game Settings")]
+    [Header("field")]
+  
     public float currentTimer;
     bool isRedLine;
     [SerializeField] List<Image> redTimeLeftList;
+
+    [SerializeField] private Hole hole;
     bool isPlayBGM;
     #endregion TMT code
 
@@ -66,21 +68,53 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    private void OnEnable()
+    public void UseBooster(ItemBoster itemBooster )
     {
-        // Luna.Unity.LifeCycle.OnPause += PauseGameplay;
-        // Luna.Unity.LifeCycle.OnResume -= ResumeGameplay;
-    }
-    private void OnDisable()
-    {
-        // Luna.Unity.LifeCycle.OnPause -= PauseGameplay;
-        // Luna.Unity.LifeCycle.OnResume -= ResumeGameplay;
+        switch (itemBooster)
+        {
+            case ItemBoster.Magnet:
+                // tang ban kinh len 
+                break;
+            case ItemBoster.Compass :
+                break;
+            case ItemBoster.SizeUp:
+                SizeUp(1);
+                break;
+            case ItemBoster.BlockBomb:
+              
+                break;
+            case ItemBoster.AddTime:
+                AddTime(10);
+                break;
+            default: break;
+        }
     }
 
-    private void ResumeGameplay()
+    public void UseHoleUp()
     {
-        Time.timeScale = 1f;
+        SizeUp(1);
     }
+
+    public void UseTime()
+    {
+        AddTime(10);
+    }
+
+    private void AddTime(int time)
+    {
+        currentTimer += time;
+    }
+    private void SizeUp(int level)
+    {
+       hole.LevelUpHoleByBoster(level);
+    }
+    
+    
+    
+
+
+
+  
     public void PauseGameplay()
     {
         Time.timeScale = 0;
